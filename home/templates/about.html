@@ -1,0 +1,49 @@
+{% extends 'homebase.html' %}
+{% load i18n %}
+{% block title %} About Us- {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+                <li><a href="{% url 'home' %}">{% trans "Anasayfa" %}</a></li>
+                <li class="active">{% trans "HAKKIMIZDA" %}</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+               <p>
+				Merhaba! Biz, E-shop olarak, dijital dünyada benzersiz alışveriş deneyimleri sunmak amacıyla yola çıktık. 2024 yılında kurulan firmamız, siz değerli müşterilerimize en kaliteli ürünleri en uygun fiyatlarla ulaştırmayı hedeflemektedir. 
+				<br>
+				Müşteri memnuniyetini her şeyin üzerinde tutan bir vizyonla, sektörde öncü olmayı amaçlıyoruz. Sadece ürün satmakla kalmayıp, aynı zamanda size özel bir alışveriş deneyimi sunmayı hedefliyoruz.
+				<br>
+				Misyonumuz, her anınızı özel kılan ürünleri ve çözümleri sizlere sunarak hayatınızı kolaylaştırmaktır.
+				 Sürdürülebilirlik, güvenilirlik ve yenilikçilik ilkesine sadık bir ekip olarak, sizlere güvenli ve keyifli alışverişin kapılarını aralıyoruz. Neden bizi tercih etmelisiniz? Geniş ürün yelpazesi ve her bütçeye uygun seçenekler, hızlı ve güvenilir kargo hizmeti, profesyonel müşteri destek ekibi gibi avantajlarımız bulunmaktadır.
+				<br>
+				Sizi aramızda görmekten mutluluk duyacağımızı belirtmek isteriz. 
+				<br>
+				Teşekkür ederiz.
+				<br>
+				 E-ticaret sitesi.</p>
+				<br>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+{% endblock %}

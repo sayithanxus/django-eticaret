@@ -1,0 +1,53 @@
+{% extends 'homebase.html' %}
+
+{% block title %} Order Complated {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Anasayfa</a></li>
+                <li class="active">Siparşiniz Onayı</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="order-summary clearfix">
+                        <div class="section-title">
+                            <h3 class="title">Sipariş Tamamlandı</h3>
+                        </div>
+                        <hr>
+                        <h2>Sayın  {{ user.first_name }} {{  user.last_name }}</h2>
+                        <hr>
+                        <h3>Siparişiniz alınmıştır</h3>
+                        <h3>Sipariş kodu : {{ ordercode }}</h3>
+                        <h3>Teşekkür ederiz.</h3>
+                        <hr>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+
+{% endblock %}

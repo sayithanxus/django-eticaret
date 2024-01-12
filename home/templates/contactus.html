@@ -1,0 +1,62 @@
+{% extends 'homebase.html' %}
+{% load i18n %}
+{% block title %} Contact Us-{{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'home' %}">{% trans "Anasayfa" %}</a></li>
+                <li class="active">{% trans "İletişim" %}</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+
+                    <div class="billing-details">
+
+                        <div class="section-title">
+                            <h3 class="title">{% trans "İletişim Formu"%}</h3>
+
+                         
+
+                        </div>
+                        <form id="checkout-form" class="clearfix" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input type="submit" class="primary-btn" value="{% trans "GÖNDER" %}">
+                        </form>
+                    </div>
+
+                </div>
+
+                
+
+
+
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+
+
+{% endblock %}

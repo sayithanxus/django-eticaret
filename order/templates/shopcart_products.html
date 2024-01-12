@@ -1,0 +1,113 @@
+{% extends 'homebase.html' %}
+{% load currency %}
+{% block title %} Shop Cart {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Anasayfa</a></li>
+                <li class="active">Sepetim</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="order-summary clearfix">
+                        <div class="section-title">
+                            <h3 class="title">Sepetteki Ürünler</h3>
+                        </div>
+                        <table class="shopping-cart-table table">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Ürün</th>
+                                <th class="text-center">Fiyat</th>
+                                <th class="text-center">Adet</th>
+                                <th class="text-center">Toplam</th>
+                                <th class="text-right"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for rs in shopcart %}
+                                <tr>
+                                    <td class="thumb">
+                                        {% if rs.variant.image_id  > 0 %}
+                                            <img src="{{rs.variant.image }}" alt="">
+                                        {% else %}
+                                            <img src="{{rs.product.image.url}}" alt="">
+                                        {% endif %}
+
+                                    </td>
+                                    <td class="details">
+                                        <a href="/product/{{ rs.product.id }}/{{ rs.product.slug }}">{{rs.product}} {{ rs.variant.size }} {{ rs.variant.color }}</a>  </td>
+                                    <td class="price text-center"><strong>
+                                        {% if rs.product.variant == 'None' %}
+                                            {{ rs.product.price|currency:request.session.currency }} TL
+                                        {% else %}
+                                            {{ rs.variant.price|currency:request.session.currency }} TL
+                                        {% endif %}
+                                    </strong></td>
+                                    <td class="qty text-center"><strong>{{rs.quantity}}</strong></td>
+                                    <td class="total text-center"><strong class="primary-color">
+                                        {% if rs.product.variant == 'None' %}
+                                            {{ rs.amount|currency:request.session.currency }} TL
+                                        {% else %}
+                                            {{ rs.varamount|currency:request.session.currency }} TL
+                                        {% endif %}
+                                    </strong></td>
+                                    <td class="text-right"><a href="/order/deletefromcart/{{ rs.id }}" onclick="return confirm('Silmek istediğinize emin misiniz?')" class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>
+                                </tr>
+
+                            {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th class="empty" colspan="3"></th>
+                                <th>Aratoplam</th>
+                                <th colspan="2" class="sub-total">{{ total|currency:request.session.currency }} TL</th>
+                            </tr>
+                            <tr>
+                                <th class="empty" colspan="3"></th>
+                                <th>Kargo</th>
+                                <td colspan="2">Ücretsiz Kargo</td>
+                            </tr>
+                            <tr>
+                                <th class="empty" colspan="3"></th>
+                                <th>Toplam</th>
+                                <th colspan="2" class="total">{{ total|currency:request.session.currency }} TL</th>
+                            </tr>
+                          
+                            </tfoot>
+                        </table>
+                        <div class="pull-right">
+                            <a href="{% url 'orderproduct' %}" class="primary-btn">Sipariş Ver</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+
+{% endblock %}

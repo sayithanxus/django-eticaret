@@ -1,0 +1,135 @@
+{% extends 'homebase.html' %}
+{% load currency %}
+{% block title %}{{ catdata.title }} Products{% endblock %}
+{% block description %} {{ catdata.description }} {% endblock %}
+{% block keywords %} {{ category.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+				<li class="active">{{ catdata.title }}  </li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- ASIDE -->
+				<div id="aside" class="col-md-1">
+					<!-- aside widget -->
+					
+				
+
+					
+				</div>
+				<!-- /ASIDE -->
+
+				<!-- MAIN -->
+				<div id="main" class="col-md-9">
+					<!-- store top filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-left">
+							<div class="row-filter">
+								<a href="#"><i class="fa fa-th-large"></i></a>
+								<a href="#" class="active"><i class="fa fa-bars"></i></a>
+							</div>
+							<div class="sort-filter">
+								<select class="input">
+										<option value="0">Pozisyona göre</option>
+										<option value="0">Fiyata göre</option>
+										<option value="0">Puana göre</option>
+									</select>
+								<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+							</div>
+						</div>
+						<div class="pull-right">
+							<div class="page-filter">
+								<span class="text-uppercase">Göster:</span>
+								<select class="input">
+										<option value="0">10</option>
+										<option value="1">20</option>
+										<option value="2">30</option>
+									</select>
+							</div>
+							<ul class="store-pages">
+								<li><span class="text-uppercase">Sayfa:</span></li>
+								<li class="active">1</li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- /store top filter -->
+
+					<!-- STORE -->
+					<div id="store">
+						<!-- row -->
+						<div class="row">
+
+                            <div class="col-md-12">
+						<div class="order-summary clearfix">
+							<div class="section-title">
+								<h3 class="title">Ürün Listesi</h3>
+							</div>
+							<table class="shopping-cart-table table">
+								<thead>
+									<tr>
+										<th>Ürün</th>
+										<th></th>
+										<th class="text-center">Fiyat</th>
+										<th class="text-center">Adet</th>
+
+										<th class="text-right"></th>
+									</tr>
+								</thead>
+								<tbody>
+
+                                {% for rs in products %}
+									<tr>
+										<td class="thumb"><a href="{% url 'product_detail' rs.id rs.slug %}">
+                                            <img src="{{ rs.image.url }}" alt="" style="height: 100px">
+                                        </a></td>
+										<td class="details"> <a href="{% url 'product_detail' rs.id rs.slug %}">{{ rs.title }}</a>	</td>
+										<td class="price text-center"><strong>{{ rs.price|currency:request.session.currency }} TL</strong><br><del class="font-weak"><small>TL4000.00</small></del></td>
+										<td class="qty text-center"><input class="input" type="number" value="1"></td>
+
+										<td class="text-right"><a href="{% url "addtoshopcart" rs.id  %}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Sepete Ekle</a></td>
+									</tr>
+                                    {% endfor %}
+
+								</tbody>
+
+							</table>
+
+						</div>
+
+					</div>
+
+						</div>
+						<!-- /row -->
+					</div>
+					<!-- /STORE -->
+
+					
+					<!-- /store bottom filter -->
+				</div>
+				<!-- /MAIN -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+{% endblock %}
